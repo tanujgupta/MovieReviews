@@ -1,14 +1,14 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EEE"
+    android:background="#2264b0"
     tools:context="com.moviereviews.tanuj.moviereviews.NavigationDrawerFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <ImageView
+        android:layout_marginTop="@dimen/nav_image_margin_top"
+        android:layout_width="280dp"
+        android:layout_height="160dp"
+        android:src="@drawable/image_2"/>
 
-</RelativeLayout>
+</FrameLayout>
