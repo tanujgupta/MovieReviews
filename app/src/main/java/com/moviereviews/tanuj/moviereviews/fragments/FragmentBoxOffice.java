@@ -4,6 +4,8 @@ package com.moviereviews.tanuj.moviereviews.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.moviereviews.tanuj.moviereviews.Adapters.AdapterBoxOffice;
 import com.moviereviews.tanuj.moviereviews.Log.L;
 import static com.moviereviews.tanuj.moviereviews.extras.Keys.EndpointBoxOffice.*;
 import static com.moviereviews.tanuj.moviereviews.extras.Constants.*;
@@ -49,6 +52,8 @@ public class FragmentBoxOffice extends Fragment {
     private RequestQueue requestQueue;
     private ArrayList<Movie> listMovies = new ArrayList<Movie>();
     private DateFormat dateFormat =  new SimpleDateFormat("yyyy-MM-dd");
+    private AdapterBoxOffice adapterBoxOffice;
+    private RecyclerView listMovieHits;
 
 
 
@@ -75,19 +80,6 @@ public class FragmentBoxOffice extends Fragment {
 
         volleySingleton = VolleySingleton.getInstance();
         requestQueue = volleySingleton.getRequestQueue();
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, getRequestUrl(10), null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-
-                L.T(getActivity(), response.toString());
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        });
-        requestQueue.add(request);
 
     }
 
@@ -95,7 +87,15 @@ public class FragmentBoxOffice extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_box_office, container, false);
+        View view = inflater.inflate(R.layout.fragment_box_office, container, false);
+
+        listMovieHits = (RecyclerView) view.findViewById(R.id.listMovieHits);
+        listMovieHits.setLayoutManager(new LinearLayoutManager(getActivity()));
+        adapterBoxOffice =  new AdapterBoxOffice(getActivity());
+        listMovieHits.setAdapter(adapterBoxOffice);
+        sendJsonRequest();
+
+        return view;
     }
 
     private void sendJsonRequest() {
@@ -192,7 +192,7 @@ public class FragmentBoxOffice extends Fragment {
                 }
             } catch (JSONException e) {
             }
-            L.t(getActivity(), listMovies.size() + " rows fetched");
+
         }
         return listMovies;
     }
