@@ -26,8 +26,8 @@ public class VolleySingleton {
             }
 
             @Override
-            public void putBitmap(String url, Bitmap bitmap) {
-                cache.put(url, bitmap);
+            public void putBitmap(String url, Bitmap mBitmap) {
+                cache.put(url, mBitmap);
             }
         });
     }
