@@ -39,14 +39,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class FragmentBoxOffice extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
     private VolleySingleton volleySingleton;
     private ImageLoader imageLoader;
     private RequestQueue requestQueue;
@@ -56,16 +49,11 @@ public class FragmentBoxOffice extends Fragment {
     private RecyclerView listMovieHits;
 
 
-
-    // TODO: Rename and change types and number of parameters
-    public static FragmentBoxOffice newInstance(String param1, String param2) {
+    public static FragmentBoxOffice newInstance() {
         FragmentBoxOffice fragment = new FragmentBoxOffice();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
+
     public FragmentBoxOffice() {
         // Required empty public constructor
     }
@@ -73,10 +61,6 @@ public class FragmentBoxOffice extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
 
         volleySingleton = VolleySingleton.getInstance();
         requestQueue = volleySingleton.getRequestQueue();
