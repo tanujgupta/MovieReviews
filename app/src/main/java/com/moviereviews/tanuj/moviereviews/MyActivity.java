@@ -1,7 +1,6 @@
 package com.moviereviews.tanuj.moviereviews;
 
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,14 +10,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.support.v4.app.FragmentManager;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.style.ImageSpan;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.android.volley.toolbox.Volley;
 import com.moviereviews.tanuj.moviereviews.tabs.SlidingTabLayout;
 
 import org.w3c.dom.Text;
@@ -50,6 +48,7 @@ public class MyActivity extends ActionBarActivity {
         mPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
         mTabs.setDistributeEvenly(true);
         mTabs.setViewPager(mPager);
+
 
 
     }
