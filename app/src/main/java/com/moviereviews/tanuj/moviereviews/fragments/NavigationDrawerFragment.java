@@ -1,4 +1,4 @@
-package com.moviereviews.tanuj.moviereviews;
+package com.moviereviews.tanuj.moviereviews.fragments;
 
 
 import android.content.Context;
@@ -13,6 +13,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.moviereviews.tanuj.moviereviews.Adapters.RVCustomAdapter;
+import com.moviereviews.tanuj.moviereviews.model.Information;
+import com.moviereviews.tanuj.moviereviews.R;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.moviereviews.tanuj.moviereviews.tabs;
+package com.moviereviews.tanuj.moviereviews.views;
 
 /*
 * Copyright 2014 Google Inc. All rights reserved.

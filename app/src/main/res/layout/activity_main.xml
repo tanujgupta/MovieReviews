@@ -16,7 +16,7 @@
             layout="@layout/app_bar" />
 
 
-        <com.moviereviews.tanuj.moviereviews.tabs.SlidingTabLayout
+        <com.moviereviews.tanuj.moviereviews.views.SlidingTabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -31,7 +31,7 @@
 
     <fragment
         android:id="@+id/fragment_navigation_drawer"
-        android:name="com.moviereviews.tanuj.moviereviews.NavigationDrawerFragment"
+        android:name="com.moviereviews.tanuj.moviereviews.fragments.NavigationDrawerFragment"
         android:layout_width="@dimen/nav_drawer_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"

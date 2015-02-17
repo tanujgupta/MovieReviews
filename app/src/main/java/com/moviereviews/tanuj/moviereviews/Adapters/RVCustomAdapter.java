@@ -1,4 +1,4 @@
-package com.moviereviews.tanuj.moviereviews;
+package com.moviereviews.tanuj.moviereviews.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.moviereviews.tanuj.moviereviews.model.Information;
+import com.moviereviews.tanuj.moviereviews.R;
 
 import java.util.Collections;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.moviereviews.tanuj.moviereviews;
+package com.moviereviews.tanuj.moviereviews.activities;
 
 
 import android.os.Bundle;
@@ -16,10 +16,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.android.volley.toolbox.Volley;
-import com.moviereviews.tanuj.moviereviews.tabs.SlidingTabLayout;
-
-import org.w3c.dom.Text;
+import com.moviereviews.tanuj.moviereviews.R;
+import com.moviereviews.tanuj.moviereviews.fragments.NavigationDrawerFragment;
+import com.moviereviews.tanuj.moviereviews.views.SlidingTabLayout;
 
 
 public class MyActivity extends ActionBarActivity {

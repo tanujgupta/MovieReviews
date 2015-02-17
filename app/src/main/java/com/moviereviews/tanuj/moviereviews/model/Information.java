@@ -1,4 +1,4 @@
-package com.moviereviews.tanuj.moviereviews;
+package com.moviereviews.tanuj.moviereviews.model;
 
 public class Information {
 
