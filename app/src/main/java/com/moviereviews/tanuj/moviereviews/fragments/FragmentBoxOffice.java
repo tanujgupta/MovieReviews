@@ -109,18 +109,18 @@ public class FragmentBoxOffice extends Fragment {
 
         if (response != null && response.length() > 0) {
 
-            long id = -1;
-            String title = NA;
-            String releaseDate = NA;
-            int audienceScore = -1;
-            String synopsis = NA;
-            String urlThumbnail = NA;
 
             try {
 
                 JSONArray arrayMovies = response.getJSONArray(KEY_MOVIES);
                 for (int i = 0; i < arrayMovies.length(); i++)
                 {
+                    long id = -1;
+                    String title = NA;
+                    String releaseDate = NA;
+                    int audienceScore = -1;
+                    String synopsis = NA;
+                    String urlThumbnail = NA;
 
                     JSONObject currentMovie = arrayMovies.getJSONObject(i);
                     //get the id of the current movie
