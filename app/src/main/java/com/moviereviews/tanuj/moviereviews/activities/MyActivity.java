@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -17,6 +18,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.moviereviews.tanuj.moviereviews.R;
+import com.moviereviews.tanuj.moviereviews.fragments.FragmentBoxOffice;
+import com.moviereviews.tanuj.moviereviews.fragments.FragmentSearch;
+import com.moviereviews.tanuj.moviereviews.fragments.FragmentUpcoming;
 import com.moviereviews.tanuj.moviereviews.fragments.NavigationDrawerFragment;
 import com.moviereviews.tanuj.moviereviews.views.SlidingTabLayout;
 
@@ -108,5 +112,43 @@ public class MyActivity extends ActionBarActivity {
         }
     }
 
+    private class ViewPagerAdapter extends FragmentStatePagerAdapter {
+
+        public ViewPagerAdapter(FragmentManager fm) {super(fm);}
+
+        public Fragment getItem(int num) {
+
+            Fragment fragment=null;
+
+            switch (num){
+
+                case MOVIES_SEARCH_RESULTS:
+                    fragment= FragmentSearch.newInstance("", "");
+                    break;
+
+                case MOVIES_HITS:
+                    fragment= FragmentBoxOffice.newInstance("", "");
+                    break;
+
+                case MOVIES_UPCOMING:
+                    fragment= FragmentUpcoming.newInstance("", "");
+                    break;
+            }
+
+            return fragment;
+
+        }
+        @Override
+        public int getCount() {
+            return 3;
+        }
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return getResources().getStringArray(R.array.tabs)[position];
+        }
+//        private Drawable getIcon(int position) {
+//            return getResources().getDrawable(icons[position]);
+//        }
+    }
 
 }
