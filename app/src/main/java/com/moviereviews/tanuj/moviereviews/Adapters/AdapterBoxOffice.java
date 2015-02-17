@@ -21,7 +21,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class AdapterBoxOffice extends RecyclerView.Adapter<AdapterBoxOffice.ViewHolderBoxOffice> {
+public class AdapterBoxOffice extends RecyclerView.Adapter<AdapterBoxOffice.ViewHolderBoxOffice>
+{
 
     private ArrayList<Movie> listMovies = new ArrayList<Movie>();
     private LayoutInflater layoutInflater;
@@ -29,47 +30,43 @@ public class AdapterBoxOffice extends RecyclerView.Adapter<AdapterBoxOffice.View
     private ImageLoader imageLoader;
     private DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 
-    public AdapterBoxOffice(Context context) {
-
+    public AdapterBoxOffice(Context context)
+    {
         layoutInflater = LayoutInflater.from(context);
         volleySingleton = VolleySingleton.getInstance();
         imageLoader = volleySingleton.getImageLoader();
-
     }
 
-    public void setMovieList(ArrayList<Movie> listMovies) {
-
+    public void setMovieList(ArrayList<Movie> listMovies)
+    {
         this.listMovies = listMovies;
         notifyItemRangeChanged(0, listMovies.size());
-
     }
 
     @Override
-    public ViewHolderBoxOffice onCreateViewHolder(ViewGroup parent, int viewType) {
-
+    public ViewHolderBoxOffice onCreateViewHolder(ViewGroup parent, int viewType)
+    {
         View view = layoutInflater.inflate(R.layout.custom_movie_box_office, parent, false);
         ViewHolderBoxOffice viewHolder = new ViewHolderBoxOffice(view);
         return viewHolder;
-
     }
 
     @Override
-    public void onBindViewHolder(ViewHolderBoxOffice holder, int position) {
-
+    public void onBindViewHolder(ViewHolderBoxOffice holder, int position)
+    {
         Movie currentMovie = listMovies.get(position);
         holder.movieTitle.setText(currentMovie.getTitle());
         Date movieReleaseDate = currentMovie.getReleaseDateTheater();
 
-        if (movieReleaseDate != null) {
-
+        if (movieReleaseDate != null)
+        {
             String formattedDate = dateFormatter.format(movieReleaseDate);
             holder.movieReleaseDate.setText(formattedDate);
 
         } else {
 
             holder.movieReleaseDate.setText(Constants.NA);
-
-        }
+       }
 
         int audienceScore = currentMovie.getAudienceScore();
 
