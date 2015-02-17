@@ -9,6 +9,11 @@
     <string name="drawer_open">OPEN</string>
     <string name="drawer_close">CLOSE</string>
 
+    <string name="error_timeout">Oops! Your Connection Timed Out</string>
+    <string name="error_auth_failure">Oops! RottenTomatoes Says It Doesn\'t Recognize You</string>
+    <string name="error_network">Oops! RottenTomatoes Server Just Messed Up</string>
+    <string name="error_parser">Oops! Data Received Was An Unreadable Mess</string>
+
     <string-array name="tabs">
         <item>TAB 1</item>
         <item>TAB 2</item>

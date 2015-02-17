@@ -9,10 +9,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -46,6 +53,7 @@ public class FragmentBoxOffice extends Fragment {
     private DateFormat dateFormat =  new SimpleDateFormat("yyyy-MM-dd");
     private AdapterBoxOffice adapterBoxOffice;
     private RecyclerView listMovieHits;
+    private TextView textVolleyError;
 
 
     public static FragmentBoxOffice newInstance() {
@@ -67,12 +75,20 @@ public class FragmentBoxOffice extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+
+        sendJsonRequest();
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_box_office, container, false);
 
         listMovieHits = (RecyclerView) view.findViewById(R.id.listMovieHits);
+        textVolleyError= (TextView) view.findViewById(R.id.textVolleyError);
         listMovieHits.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapterBoxOffice =  new AdapterBoxOffice(getActivity());
         listMovieHits.setAdapter(adapterBoxOffice);
@@ -88,6 +104,7 @@ public class FragmentBoxOffice extends Fragment {
                     @Override
                     public void onResponse(JSONObject response)
                     {
+                        textVolleyError.setVisibility(View.GONE);
                         listMovies = parseJSONResponse(response);
                         adapterBoxOffice.setMovieList(listMovies);
                     }
@@ -95,13 +112,40 @@ public class FragmentBoxOffice extends Fragment {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        L.t(getActivity(), error.getMessage() + "");
+                        handleVolleyError(error);
                     }
         });
 
         requestQueue.add(request);
 
     }
+
+
+    private void handleVolleyError(VolleyError error)
+    {
+        textVolleyError.setVisibility(View.VISIBLE);
+
+        if (error instanceof TimeoutError || error instanceof NoConnectionError)
+        {
+            textVolleyError.setText(R.string.error_timeout);
+        } else if (error instanceof AuthFailureError)
+        {
+            textVolleyError.setText(R.string.error_auth_failure);
+
+        } else if (error instanceof ServerError)
+        {
+            textVolleyError.setText(R.string.error_auth_failure);
+
+        } else if (error instanceof NetworkError)
+        {
+            textVolleyError.setText(R.string.error_network);
+
+        } else if (error instanceof ParseError)
+        {
+            textVolleyError.setText(R.string.error_parser);
+        }
+    }
+
 
     private ArrayList<Movie> parseJSONResponse(JSONObject response) {
 
