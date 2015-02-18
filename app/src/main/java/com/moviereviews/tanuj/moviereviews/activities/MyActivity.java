@@ -20,7 +20,7 @@ import com.moviereviews.tanuj.moviereviews.views.SlidingTabLayout;
 
 public class MyActivity extends ActionBarActivity {
 
-    public static final int MOVIES_SEARCH_RESULTS=0;
+    public static final int MOVIES_IN_THEATRE=0;
     public static final int MOVIES_HITS=1;
     public static final int MOVIES_UPCOMING=2;
     private Toolbar toolbar;
@@ -57,7 +57,7 @@ public class MyActivity extends ActionBarActivity {
 
             switch (num){
 
-                case MOVIES_SEARCH_RESULTS:
+                case MOVIES_IN_THEATRE:
                     fragment= FragmentInTheatres.newInstance("", "");
                     break;
 
