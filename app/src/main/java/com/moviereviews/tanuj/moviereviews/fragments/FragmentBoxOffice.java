@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.moviereviews.tanuj.moviereviews.Adapters.AdapterMovies;
@@ -18,6 +19,7 @@ public class FragmentBoxOffice extends Fragment {
     private AdapterMovies adapterBoxOffice;
     private RecyclerView listMovieHits;
     private TextView textVolleyError;
+    private ProgressBar progressBar;
 
     public static FragmentBoxOffice newInstance() {
         FragmentBoxOffice fragment = new FragmentBoxOffice();
@@ -36,7 +38,7 @@ public class FragmentBoxOffice extends Fragment {
     public void onResume()
     {
         super.onResume();
-        fetchJsonRequest(adapterBoxOffice, textVolleyError, BOX_OFFICE);
+        fetchJsonRequest(adapterBoxOffice, textVolleyError, progressBar, BOX_OFFICE);
 
     }
 
@@ -48,11 +50,12 @@ public class FragmentBoxOffice extends Fragment {
 
         listMovieHits = (RecyclerView) view.findViewById(R.id.listMovieHits);
         textVolleyError= (TextView) view.findViewById(R.id.textVolleyError);
+        progressBar = (ProgressBar) view.findViewById(R.id.progress_dialog);
         listMovieHits.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapterBoxOffice =  new AdapterMovies(getActivity());
         listMovieHits.setAdapter(adapterBoxOffice);
 
-        fetchJsonRequest(adapterBoxOffice, textVolleyError, BOX_OFFICE);
+        fetchJsonRequest(adapterBoxOffice, textVolleyError, progressBar, BOX_OFFICE);
 
         return view;
     }

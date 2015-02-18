@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.moviereviews.tanuj.moviereviews.Adapters.AdapterMovies;
@@ -20,6 +21,7 @@ public class FragmentInTheatres extends Fragment {
     private AdapterMovies adapterInTheatres;
     private RecyclerView listMovieTheatres;
     private TextView textVolleyError;
+    private ProgressBar progressBar;
 
     public static FragmentInTheatres newInstance() {
         FragmentInTheatres fragment = new FragmentInTheatres();
@@ -37,7 +39,7 @@ public class FragmentInTheatres extends Fragment {
     public void onResume()
     {
         super.onResume();
-        fetchJsonRequest(adapterInTheatres, textVolleyError, IN_THEARE);
+        fetchJsonRequest(adapterInTheatres, textVolleyError, progressBar, IN_THEARE);
 
     }
 
@@ -49,11 +51,12 @@ public class FragmentInTheatres extends Fragment {
 
         listMovieTheatres = (RecyclerView) view.findViewById(R.id.listMovieHits);
         textVolleyError= (TextView) view.findViewById(R.id.textVolleyError);
+        progressBar = (ProgressBar) view.findViewById(R.id.progress_dialog);
         listMovieTheatres.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapterInTheatres =  new AdapterMovies(getActivity());
         listMovieTheatres.setAdapter(adapterInTheatres);
 
-        fetchJsonRequest(adapterInTheatres, textVolleyError, IN_THEARE);
+        fetchJsonRequest(adapterInTheatres, textVolleyError, progressBar, IN_THEARE);
 
         return view;
     }

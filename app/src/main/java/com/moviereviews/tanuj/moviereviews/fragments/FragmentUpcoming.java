@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.moviereviews.tanuj.moviereviews.Adapters.AdapterMovies;
@@ -22,6 +23,7 @@ public class FragmentUpcoming extends Fragment {
     private AdapterMovies adapterUpcoming;
     private RecyclerView listUpcoming;
     private TextView textVolleyError;
+    private ProgressBar progressBar;
 
     public static FragmentUpcoming newInstance() {
         FragmentUpcoming fragment = new FragmentUpcoming();
@@ -40,7 +42,7 @@ public class FragmentUpcoming extends Fragment {
     public void onResume()
     {
         super.onResume();
-        fetchJsonRequest(adapterUpcoming, textVolleyError, UPCOMING);
+        fetchJsonRequest(adapterUpcoming, textVolleyError, progressBar, UPCOMING);
 
     }
 
@@ -52,11 +54,12 @@ public class FragmentUpcoming extends Fragment {
 
         listUpcoming = (RecyclerView) view.findViewById(R.id.listMovieHits);
         textVolleyError= (TextView) view.findViewById(R.id.textVolleyError);
+        progressBar = (ProgressBar) view.findViewById(R.id.progress_dialog);
         listUpcoming.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapterUpcoming =  new AdapterMovies(getActivity());
         listUpcoming.setAdapter(adapterUpcoming);
 
-        fetchJsonRequest(adapterUpcoming, textVolleyError, UPCOMING);
+        fetchJsonRequest(adapterUpcoming, textVolleyError, progressBar, UPCOMING);
 
         return view;
     }

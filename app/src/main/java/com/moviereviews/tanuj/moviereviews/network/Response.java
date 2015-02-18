@@ -1,6 +1,7 @@
 package com.moviereviews.tanuj.moviereviews.network;
 
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
@@ -67,7 +68,7 @@ public class Response {
         requestQueue = volleySingleton.getRequestQueue();
     }
 
-    public static void fetchJsonRequest(final AdapterMovies adapterBoxOffice, final TextView eTextView, int url_type)
+    public static void fetchJsonRequest(final AdapterMovies adapterBoxOffice, final TextView eTextView, final ProgressBar progressBar, int url_type)
     {
 
         init();
@@ -92,6 +93,7 @@ public class Response {
             @Override
             public void onResponse(JSONObject response)
             {
+                progressBar.setVisibility(View.GONE);
                 eTextView.setVisibility(View.GONE);
                 listMovies = parseJSONResponse(response);
                 adapterBoxOffice.setMovieList(listMovies);
@@ -101,6 +103,7 @@ public class Response {
             @Override
             public void onErrorResponse(VolleyError error) {
 
+                progressBar.setVisibility(View.GONE);
                 handleVolleyError(eTextView, error);
             }
         });
