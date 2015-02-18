@@ -2,9 +2,7 @@ package com.moviereviews.tanuj.moviereviews.activities;
 
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -14,7 +12,7 @@ import android.support.v4.app.FragmentManager;
 
 import com.moviereviews.tanuj.moviereviews.R;
 import com.moviereviews.tanuj.moviereviews.fragments.FragmentBoxOffice;
-import com.moviereviews.tanuj.moviereviews.fragments.FragmentSearch;
+import com.moviereviews.tanuj.moviereviews.fragments.FragmentInTheatres;
 import com.moviereviews.tanuj.moviereviews.fragments.FragmentUpcoming;
 import com.moviereviews.tanuj.moviereviews.fragments.NavigationDrawerFragment;
 import com.moviereviews.tanuj.moviereviews.views.SlidingTabLayout;
@@ -60,7 +58,7 @@ public class MyActivity extends ActionBarActivity {
             switch (num){
 
                 case MOVIES_SEARCH_RESULTS:
-                    fragment= FragmentSearch.newInstance("", "");
+                    fragment= FragmentInTheatres.newInstance("", "");
                     break;
 
                 case MOVIES_HITS:
