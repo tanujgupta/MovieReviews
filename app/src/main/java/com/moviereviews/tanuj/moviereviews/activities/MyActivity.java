@@ -58,7 +58,7 @@ public class MyActivity extends ActionBarActivity {
             switch (num){
 
                 case MOVIES_IN_THEATRE:
-                    fragment= FragmentInTheatres.newInstance("", "");
+                    fragment= FragmentInTheatres.newInstance();
                     break;
 
                 case MOVIES_HITS:
