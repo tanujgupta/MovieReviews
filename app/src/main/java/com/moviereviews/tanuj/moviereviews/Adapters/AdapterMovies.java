@@ -21,7 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class AdapterBoxOffice extends RecyclerView.Adapter<AdapterBoxOffice.ViewHolderBoxOffice>
+public class AdapterMovies extends RecyclerView.Adapter<AdapterMovies.ViewHolderBoxOffice>
 {
 
     private ArrayList<Movie> listMovies = new ArrayList<Movie>();
@@ -30,7 +30,7 @@ public class AdapterBoxOffice extends RecyclerView.Adapter<AdapterBoxOffice.View
     private ImageLoader imageLoader;
     private DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 
-    public AdapterBoxOffice(Context context)
+    public AdapterMovies(Context context)
     {
         layoutInflater = LayoutInflater.from(context);
         volleySingleton = VolleySingleton.getInstance();

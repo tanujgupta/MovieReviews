@@ -66,7 +66,7 @@ public class MyActivity extends ActionBarActivity {
                     break;
 
                 case MOVIES_UPCOMING:
-                    fragment= FragmentUpcoming.newInstance("", "");
+                    fragment= FragmentUpcoming.newInstance();
                     break;
             }
 

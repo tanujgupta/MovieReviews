@@ -9,13 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.moviereviews.tanuj.moviereviews.Adapters.AdapterBoxOffice;
+import com.moviereviews.tanuj.moviereviews.Adapters.AdapterMovies;
 import com.moviereviews.tanuj.moviereviews.R;
-import static com.moviereviews.tanuj.moviereviews.network.Response.fetchJsonRequest;
+import static com.moviereviews.tanuj.moviereviews.network.Response.*;
 
 public class FragmentBoxOffice extends Fragment {
 
-    private AdapterBoxOffice adapterBoxOffice;
+    private AdapterMovies adapterBoxOffice;
     private RecyclerView listMovieHits;
     private TextView textVolleyError;
 
@@ -36,7 +36,7 @@ public class FragmentBoxOffice extends Fragment {
     public void onResume()
     {
         super.onResume();
-        fetchJsonRequest(adapterBoxOffice, textVolleyError);
+        fetchJsonRequest(adapterBoxOffice, textVolleyError, BOX_OFFICE);
 
     }
 
@@ -49,10 +49,10 @@ public class FragmentBoxOffice extends Fragment {
         listMovieHits = (RecyclerView) view.findViewById(R.id.listMovieHits);
         textVolleyError= (TextView) view.findViewById(R.id.textVolleyError);
         listMovieHits.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapterBoxOffice =  new AdapterBoxOffice(getActivity());
+        adapterBoxOffice =  new AdapterMovies(getActivity());
         listMovieHits.setAdapter(adapterBoxOffice);
 
-        fetchJsonRequest(adapterBoxOffice, textVolleyError);
+        fetchJsonRequest(adapterBoxOffice, textVolleyError, BOX_OFFICE);
 
         return view;
     }

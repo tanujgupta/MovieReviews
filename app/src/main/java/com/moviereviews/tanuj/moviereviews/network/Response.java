@@ -13,7 +13,7 @@ import com.android.volley.ServerError;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.moviereviews.tanuj.moviereviews.Adapters.AdapterBoxOffice;
+import com.moviereviews.tanuj.moviereviews.Adapters.AdapterMovies;
 import com.moviereviews.tanuj.moviereviews.MyApplication;
 import com.moviereviews.tanuj.moviereviews.R;
 import com.moviereviews.tanuj.moviereviews.extras.Constants;
@@ -51,21 +51,43 @@ import static com.moviereviews.tanuj.moviereviews.extras.UrlEndpoints.URL_UPCOMI
 
 public class Response {
 
+    public static final int BOX_OFFICE = 1;
+    public static final int IN_THEARE = 0;
+    public static final int UPCOMING = 2;
+    private static final int LIMIT = 50;
+
     private static VolleySingleton volleySingleton;
     private static RequestQueue requestQueue;
     private static ArrayList<Movie> listMovies = new ArrayList<Movie>();
     private static DateFormat dateFormat =  new SimpleDateFormat("yyyy-MM-dd");
 
-    private static void init(){
+    private static void init()
+    {
         volleySingleton = VolleySingleton.getInstance();
         requestQueue = volleySingleton.getRequestQueue();
     }
 
-    public static void fetchJsonRequest(final AdapterBoxOffice adapterBoxOffice, final TextView eTextView) {
+    public static void fetchJsonRequest(final AdapterMovies adapterBoxOffice, final TextView eTextView, int url_type)
+    {
 
         init();
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, getBoxOfficetUrl(30), null, new Listener<JSONObject>() {
+        String url = "";
+
+        switch (url_type)
+        {
+            case IN_THEARE  : url = getInTheatresURL();
+                              break;
+
+            case BOX_OFFICE : url = getBoxOfficetUrl();
+                              break;
+
+            case UPCOMING   : url = getUpcomingUrl();
+                              break;
+
+        }
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response)
@@ -112,7 +134,8 @@ public class Response {
         }
     }
 
-    private static ArrayList<Movie> parseJSONResponse(JSONObject response) {
+    private static ArrayList<Movie> parseJSONResponse(JSONObject response)
+    {
 
         ArrayList<Movie> listMovies = new ArrayList<Movie>();
 
@@ -208,19 +231,19 @@ public class Response {
 
     }
 
-    private static String getBoxOfficetUrl(int limit)
+    private static String getBoxOfficetUrl()
     {
-        return URL_BOX_OFFICE + URL_CHAR_QUESTION + URL_PARAM_API_KEY + MyApplication.API_KEY_ROTTEN_TOMATOES + URL_CHAR_AMEPERSAND + URL_PARAM_LIMIT + limit;
+        return URL_BOX_OFFICE + URL_CHAR_QUESTION + URL_PARAM_API_KEY + MyApplication.API_KEY_ROTTEN_TOMATOES + URL_CHAR_AMEPERSAND + URL_PARAM_LIMIT + LIMIT;
     }
 
-    private static String getUpcomingUrl(int limit)
+    private static String getUpcomingUrl()
     {
-        return URL_UPCOMING + URL_CHAR_QUESTION + URL_PARAM_API_KEY + MyApplication.API_KEY_ROTTEN_TOMATOES + URL_CHAR_AMEPERSAND + URL_PARAM_LIMIT + limit;
+        return URL_UPCOMING + URL_CHAR_QUESTION + URL_PARAM_API_KEY + MyApplication.API_KEY_ROTTEN_TOMATOES + URL_CHAR_AMEPERSAND + URL_PARAM_LIMIT + LIMIT;
     }
 
-    private static String getInTheatresURL(int limit)
+    private static String getInTheatresURL()
     {
-        return URL_IN_THEATERS + URL_CHAR_QUESTION + URL_PARAM_API_KEY + MyApplication.API_KEY_ROTTEN_TOMATOES + URL_CHAR_AMEPERSAND + URL_PARAM_LIMIT + limit;
+        return URL_IN_THEATERS + URL_CHAR_QUESTION + URL_PARAM_API_KEY + MyApplication.API_KEY_ROTTEN_TOMATOES + URL_CHAR_AMEPERSAND + URL_PARAM_LIMIT + LIMIT;
     }
 
 }
