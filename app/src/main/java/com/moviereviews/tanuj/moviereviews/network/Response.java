@@ -43,9 +43,11 @@ import static com.moviereviews.tanuj.moviereviews.extras.Keys.EndpointBoxOffice.
 import static com.moviereviews.tanuj.moviereviews.extras.UrlEndpoints.URL_BOX_OFFICE;
 import static com.moviereviews.tanuj.moviereviews.extras.UrlEndpoints.URL_CHAR_AMEPERSAND;
 import static com.moviereviews.tanuj.moviereviews.extras.UrlEndpoints.URL_CHAR_QUESTION;
+import static com.moviereviews.tanuj.moviereviews.extras.UrlEndpoints.URL_IN_THEATERS;
 import static com.moviereviews.tanuj.moviereviews.extras.UrlEndpoints.URL_PARAM_API_KEY;
 import static com.moviereviews.tanuj.moviereviews.extras.UrlEndpoints.URL_PARAM_LIMIT;
 import static com.android.volley.Response.*;
+import static com.moviereviews.tanuj.moviereviews.extras.UrlEndpoints.URL_UPCOMING;
 
 public class Response {
 
@@ -59,11 +61,11 @@ public class Response {
         requestQueue = volleySingleton.getRequestQueue();
     }
 
-    public static ArrayList<Movie> sendJsonRequest(final AdapterBoxOffice adapterBoxOffice, final TextView eTextView) {
+    public static void fetchJsonRequest(final AdapterBoxOffice adapterBoxOffice, final TextView eTextView) {
 
         init();
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, getRequestUrl(30), null, new Listener<JSONObject>() {
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, getBoxOfficetUrl(30), null, new Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response)
@@ -82,8 +84,6 @@ public class Response {
         });
 
         requestQueue.add(request);
-
-        return listMovies;
 
     }
 
@@ -208,9 +208,19 @@ public class Response {
 
     }
 
-    public static String getRequestUrl(int limit)
+    private static String getBoxOfficetUrl(int limit)
     {
         return URL_BOX_OFFICE + URL_CHAR_QUESTION + URL_PARAM_API_KEY + MyApplication.API_KEY_ROTTEN_TOMATOES + URL_CHAR_AMEPERSAND + URL_PARAM_LIMIT + limit;
+    }
+
+    private static String getUpcomingUrl(int limit)
+    {
+        return URL_UPCOMING + URL_CHAR_QUESTION + URL_PARAM_API_KEY + MyApplication.API_KEY_ROTTEN_TOMATOES + URL_CHAR_AMEPERSAND + URL_PARAM_LIMIT + limit;
+    }
+
+    private static String getInTheatresURL(int limit)
+    {
+        return URL_IN_THEATERS + URL_CHAR_QUESTION + URL_PARAM_API_KEY + MyApplication.API_KEY_ROTTEN_TOMATOES + URL_CHAR_AMEPERSAND + URL_PARAM_LIMIT + limit;
     }
 
 }
