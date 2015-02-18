@@ -9,6 +9,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.support.v4.app.FragmentManager;
+import android.widget.ImageView;
 
 import com.moviereviews.tanuj.moviereviews.R;
 import com.moviereviews.tanuj.moviereviews.fragments.FragmentBoxOffice;
@@ -16,6 +17,7 @@ import com.moviereviews.tanuj.moviereviews.fragments.FragmentInTheatres;
 import com.moviereviews.tanuj.moviereviews.fragments.FragmentUpcoming;
 import com.moviereviews.tanuj.moviereviews.fragments.NavigationDrawerFragment;
 import com.moviereviews.tanuj.moviereviews.views.SlidingTabLayout;
+import com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton;
 
 
 public class MyActivity extends ActionBarActivity {
@@ -44,6 +46,11 @@ public class MyActivity extends ActionBarActivity {
         mPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager()));
         mTabs.setDistributeEvenly(true);
         mTabs.setViewPager(mPager);
+
+        ImageView iconActionButton = new ImageView(this);
+        iconActionButton.setImageResource(R.drawable.ic_launcher);
+
+        FloatingActionButton acb =  new FloatingActionButton.Builder(this).setContentView(iconActionButton).build();
 
     }
 
