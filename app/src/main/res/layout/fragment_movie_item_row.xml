@@ -3,13 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.moviereviews.tanuj.moviereviews.fragments.FragmentBoxOffice">
-
     <!-- TODO: Update blank fragment layout -->
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/listUpcoming"
+        android:id="@+id/listMovieHits"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
     <TextView
         android:id="@+id/textVolleyError"
         android:layout_width="wrap_content"
@@ -18,6 +16,4 @@
         android:padding="@dimen/size_word"
         android:textColor="@color/red"
         android:visibility="gone"/>
-
-
 </FrameLayout>
