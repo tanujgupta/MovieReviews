@@ -10,13 +10,12 @@
         android:id="@+id/containerDrawerImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#2264b0">
+        android:background="#f44336">
 
     <ImageView
-        android:layout_marginTop="@dimen/nav_image_margin_top"
-        android:layout_width="280dp"
-        android:layout_height="160dp"
-        android:src="@drawable/image_2"/>
+        android:layout_width="297dp"
+        android:layout_height="200dp"
+        android:src="@drawable/image_1"/>
 
     </LinearLayout>
 
