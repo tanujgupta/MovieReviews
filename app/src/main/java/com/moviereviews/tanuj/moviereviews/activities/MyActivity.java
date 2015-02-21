@@ -12,8 +12,6 @@ import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.moviereviews.tanuj.moviereviews.Adapters.AdapterMovies;
-import com.moviereviews.tanuj.moviereviews.Log.L;
 import com.moviereviews.tanuj.moviereviews.R;
 import com.moviereviews.tanuj.moviereviews.extras.SortListener;
 import com.moviereviews.tanuj.moviereviews.fragments.FragmentBoxOffice;
@@ -132,7 +130,6 @@ public class MyActivity extends ActionBarActivity {
                 }
 
             }
-
 
         }
     };

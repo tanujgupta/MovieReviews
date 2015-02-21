@@ -14,7 +14,6 @@ import com.android.volley.toolbox.ImageLoader;
 import com.moviereviews.tanuj.moviereviews.R;
 import com.moviereviews.tanuj.moviereviews.extras.Constants;
 import com.moviereviews.tanuj.moviereviews.extras.MovieSorter;
-import com.moviereviews.tanuj.moviereviews.extras.SortListener;
 import com.moviereviews.tanuj.moviereviews.model.Movie;
 import com.moviereviews.tanuj.moviereviews.network.VolleySingleton;
 
