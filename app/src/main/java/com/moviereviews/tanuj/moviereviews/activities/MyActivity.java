@@ -9,9 +9,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.support.v4.app.FragmentManager;
+import android.view.View;
 import android.widget.ImageView;
 
+import com.moviereviews.tanuj.moviereviews.Adapters.AdapterMovies;
+import com.moviereviews.tanuj.moviereviews.Log.L;
 import com.moviereviews.tanuj.moviereviews.R;
+import com.moviereviews.tanuj.moviereviews.extras.SortListener;
 import com.moviereviews.tanuj.moviereviews.fragments.FragmentBoxOffice;
 import com.moviereviews.tanuj.moviereviews.fragments.FragmentInTheatres;
 import com.moviereviews.tanuj.moviereviews.fragments.FragmentUpcoming;
@@ -20,6 +24,8 @@ import com.moviereviews.tanuj.moviereviews.views.SlidingTabLayout;
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton;
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
 import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
+
+import static com.moviereviews.tanuj.moviereviews.extras.Resources.*;
 
 
 public class MyActivity extends ActionBarActivity {
@@ -35,6 +41,7 @@ public class MyActivity extends ActionBarActivity {
     private Toolbar toolbar;
     private SlidingTabLayout mTabs;
     private ViewPager mPager;
+    private ViewPagerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +57,8 @@ public class MyActivity extends ActionBarActivity {
 
         mPager = (ViewPager) findViewById(R.id.pager);
         mTabs = (SlidingTabLayout) findViewById(R.id.tabs);
-        mPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager()));
+        adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        mPager.setAdapter(adapter);
         mTabs.setDistributeEvenly(true);
         mTabs.setViewPager(mPager);
 
@@ -89,9 +97,10 @@ public class MyActivity extends ActionBarActivity {
         buttonSortName.setTag(TAG_SORT_NAME);
         buttonSortDate.setTag(TAG_SORT_DATE);
         buttonSortRatings.setTag(TAG_SORT_RATINGS);
-    //    buttonSortName.setOnClickListener(this);
-      //  buttonSortDate.setOnClickListener(this);
-       // buttonSortRatings.setOnClickListener(this);
+
+        buttonSortName.setOnClickListener(clickListner);
+        buttonSortDate.setOnClickListener(clickListner);
+        buttonSortRatings.setOnClickListener(clickListner);
 
         //add the sub buttons to the main floating action button
         FloatingActionMenu actionMenu = new FloatingActionMenu.Builder(this)
@@ -102,6 +111,31 @@ public class MyActivity extends ActionBarActivity {
                 .build();
     }
 
+    private View.OnClickListener clickListner =  new View.OnClickListener() {
+
+
+        @Override
+        public void onClick(View v) {
+
+            Fragment fragment= (Fragment) adapter.instantiateItem(mPager, mPager.getCurrentItem());
+
+            if(fragment instanceof SortListener){
+
+                if (v.getTag().equals(TAG_SORT_NAME)) {
+                    ((SortListener) fragment).sort(SORT_BY_NAME);
+                }
+                if (v.getTag().equals(TAG_SORT_DATE)) {
+                    ((SortListener) fragment).sort(SORT_BY_DATE);
+                }
+                if (v.getTag().equals(TAG_SORT_RATINGS)) {
+                    ((SortListener) fragment).sort(SORT_BY_STAR);
+                }
+
+            }
+
+
+        }
+    };
 
     private class ViewPagerAdapter extends FragmentStatePagerAdapter {
 

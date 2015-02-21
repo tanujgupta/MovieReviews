@@ -13,8 +13,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.moviereviews.tanuj.moviereviews.R;
 import com.moviereviews.tanuj.moviereviews.extras.Constants;
+import com.moviereviews.tanuj.moviereviews.extras.MovieSorter;
+import com.moviereviews.tanuj.moviereviews.extras.SortListener;
 import com.moviereviews.tanuj.moviereviews.model.Movie;
 import com.moviereviews.tanuj.moviereviews.network.VolleySingleton;
+
+import static com.moviereviews.tanuj.moviereviews.extras.Resources.*;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -41,6 +45,26 @@ public class AdapterMovies extends RecyclerView.Adapter<AdapterMovies.ViewHolder
     {
         this.listMovies = listMovies;
         notifyItemRangeChanged(0, listMovies.size());
+    }
+
+
+    public void sortMoview(int sortBy) {
+
+        switch (sortBy){
+
+            case SORT_BY_NAME : MovieSorter.sortMoviesByName(listMovies);
+                notifyDataSetChanged();
+                break;
+
+            case SORT_BY_DATE : MovieSorter.sortMoviesByDate(listMovies);
+                notifyDataSetChanged();
+                break;
+
+            case SORT_BY_STAR : MovieSorter.sortMoviesByRating(listMovies);
+                notifyDataSetChanged();
+                break;
+        }
+
     }
 
     @Override

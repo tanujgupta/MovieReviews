@@ -12,11 +12,12 @@ import android.widget.TextView;
 
 import com.moviereviews.tanuj.moviereviews.Adapters.AdapterMovies;
 import com.moviereviews.tanuj.moviereviews.R;
+import com.moviereviews.tanuj.moviereviews.extras.SortListener;
 
 import static com.moviereviews.tanuj.moviereviews.network.Response.IN_THEARE;
 import static com.moviereviews.tanuj.moviereviews.network.Response.fetchJsonRequest;
 
-public class FragmentInTheatres extends Fragment {
+public class FragmentInTheatres extends Fragment implements SortListener{
 
     private AdapterMovies adapterInTheatres;
     private RecyclerView listMovieTheatres;
@@ -61,4 +62,8 @@ public class FragmentInTheatres extends Fragment {
         return view;
     }
 
+    @Override
+    public void sort(int sortby) {
+            adapterInTheatres.sortMoview(sortby);
+    }
 }

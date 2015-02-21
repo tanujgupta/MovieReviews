@@ -12,9 +12,11 @@ import android.widget.TextView;
 
 import com.moviereviews.tanuj.moviereviews.Adapters.AdapterMovies;
 import com.moviereviews.tanuj.moviereviews.R;
+import com.moviereviews.tanuj.moviereviews.extras.SortListener;
+
 import static com.moviereviews.tanuj.moviereviews.network.Response.*;
 
-public class FragmentBoxOffice extends Fragment {
+public class FragmentBoxOffice extends Fragment implements SortListener{
 
     private AdapterMovies adapterBoxOffice;
     private RecyclerView listMovieHits;
@@ -58,6 +60,11 @@ public class FragmentBoxOffice extends Fragment {
         fetchJsonRequest(adapterBoxOffice, textVolleyError, progressBar, BOX_OFFICE);
 
         return view;
+    }
+
+    @Override
+    public void sort(int sortby) {
+        adapterBoxOffice.sortMoview(sortby);
     }
 
 }

@@ -14,11 +14,13 @@ import android.widget.TextView;
 
 import com.moviereviews.tanuj.moviereviews.Adapters.AdapterMovies;
 import com.moviereviews.tanuj.moviereviews.R;
+import com.moviereviews.tanuj.moviereviews.extras.MovieSorter;
+import com.moviereviews.tanuj.moviereviews.extras.SortListener;
 
 import static com.moviereviews.tanuj.moviereviews.network.Response.UPCOMING;
 import static com.moviereviews.tanuj.moviereviews.network.Response.fetchJsonRequest;
 
-public class FragmentUpcoming extends Fragment {
+public class FragmentUpcoming extends Fragment implements SortListener{
 
     private AdapterMovies adapterUpcoming;
     private RecyclerView listUpcoming;
@@ -46,6 +48,8 @@ public class FragmentUpcoming extends Fragment {
 
     }
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
@@ -65,4 +69,8 @@ public class FragmentUpcoming extends Fragment {
     }
 
 
+    @Override
+    public void sort(int sortby) {
+        adapterUpcoming.sortMoview(sortby);
+    }
 }
