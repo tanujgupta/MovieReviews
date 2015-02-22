@@ -1,6 +1,7 @@
 package com.moviereviews.tanuj.moviereviews.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.moviereviews.tanuj.moviereviews.R;
+import com.moviereviews.tanuj.moviereviews.activities.DetailedMovieInfo;
 import com.moviereviews.tanuj.moviereviews.extras.Constants;
 import com.moviereviews.tanuj.moviereviews.extras.MovieSorter;
 import com.moviereviews.tanuj.moviereviews.model.Movie;
@@ -32,9 +34,11 @@ public class AdapterMovies extends RecyclerView.Adapter<AdapterMovies.ViewHolder
     private VolleySingleton volleySingleton;
     private ImageLoader imageLoader;
     private DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+    private Context mContext;
 
     public AdapterMovies(Context context)
     {
+        mContext = context;
         layoutInflater = LayoutInflater.from(context);
         volleySingleton = VolleySingleton.getInstance();
         imageLoader = volleySingleton.getImageLoader();
@@ -137,7 +141,7 @@ public class AdapterMovies extends RecyclerView.Adapter<AdapterMovies.ViewHolder
 
     }
 
-    static class ViewHolderBoxOffice extends RecyclerView.ViewHolder {
+    class ViewHolderBoxOffice extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView movieThumbnail;
         TextView movieTitle;
@@ -151,7 +155,14 @@ public class AdapterMovies extends RecyclerView.Adapter<AdapterMovies.ViewHolder
             movieTitle = (TextView) itemView.findViewById(R.id.movieTitle);
             movieReleaseDate = (TextView) itemView.findViewById(R.id.movieReleaseDate);
             movieAudienceScore = (RatingBar) itemView.findViewById(R.id.movieAudienceScore);
+            itemView.setOnClickListener(this);
 
+        }
+
+        @Override
+        public void onClick(View v) {
+
+            mContext.startActivity(new Intent(mContext, DetailedMovieInfo.class));
         }
     }
 }
