@@ -8,12 +8,13 @@
 
     <ImageView
         android:id="@+id/listIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_centerVertical="true"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:src="@drawable/ic_number1" />
+        android:src="@drawable/ic_action_alphabets"
+        android:background="@drawable/selector_sub_button_gray"/>
 
     <TextView
         android:id="@+id/listText"

@@ -81,13 +81,15 @@ public class NavigationDrawerFragment extends Fragment {
 
 //load only static data inside a drawer
         List<Information> data = new ArrayList<Information>();
-        int[] icons = {R.drawable.ic_number1, R.drawable.ic_number2, R.drawable.ic_number3, R.drawable.ic_number4};
-        String[] titles = {"Vivz", "Anky", "Slidenerd", "YouTube"};
+        int[] icons = {R.drawable.ic_action_home, R.drawable.ic_action_alphabets, R.drawable.ic_action_calendar, R.drawable.ic_action_important};
 
-        for (int i = 0; i < 20; i++) {
+        String[] titles = {"Home", "Sort by Name", "Sort by Date", "Sort by Ratings"};
+
+        for (int i = 0; i < icons.length; i++) {
+
             Information current = new Information();
-            current.iconId = icons[i % icons.length];
-            current.title = titles[i % titles.length];
+            current.iconId = icons[i];
+            current.title = titles[i];
             data.add(current);
         }
         return data;
