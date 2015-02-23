@@ -3,11 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.moviereviews.tanuj.moviereviews.fragments.FragmentBoxOffice">
-    <!-- TODO: Update blank fragment layout -->
+
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/listMovieHits"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
     <TextView
         android:id="@+id/textVolleyError"
         android:layout_width="wrap_content"
@@ -15,14 +17,14 @@
         android:layout_gravity="center"
         android:padding="@dimen/size_word"
         android:textColor="@color/red"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
-   <ProgressBar
-       android:id="@+id/progress_dialog"
-       style="?android:attr/progressBarStyleLarge"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_gravity="center"
-       android:indeterminateDrawable="@drawable/progress"/>
+    <ProgressBar
+        android:id="@+id/progress_dialog"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminateDrawable="@drawable/progress" />
 
 </FrameLayout>
