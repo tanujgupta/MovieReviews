@@ -76,7 +76,7 @@ public class NavigationDrawerFragment extends Fragment {
         List<Information> data = new ArrayList<Information>();
         int[] icons = {R.drawable.ic_action_home, R.drawable.ic_action_alphabets, R.drawable.ic_action_calendar, R.drawable.ic_action_important};
 
-        String[] titles = {"Home", "Sort by Name", "Sort by Date", "Sort by Ratings"};
+        String[] titles = {"Home", "Rate the App", "Send Feedback", "Profile coming soon"};
 
         for (int i = 0; i < icons.length; i++) {
 

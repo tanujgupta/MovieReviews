@@ -1,6 +1,7 @@
 package com.moviereviews.tanuj.moviereviews.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.moviereviews.tanuj.moviereviews.fragments.NavigationDrawerFragment;
 import com.moviereviews.tanuj.moviereviews.model.Information;
@@ -20,11 +22,13 @@ import java.util.List;
 public class RVCustomAdapter extends RecyclerView.Adapter <RVCustomAdapter.MyViewHolder> {
 
     private LayoutInflater inflater;
-    List<Information> data = Collections.emptyList();
+    private Context mContext;
+    private List<Information> data = Collections.emptyList();
 
 
     public RVCustomAdapter(Context context, List<Information> data) {
 
+        mContext = context;
         inflater =  LayoutInflater.from(context);
         this.data = data;
     }
@@ -66,7 +70,32 @@ public class RVCustomAdapter extends RecyclerView.Adapter <RVCustomAdapter.MyVie
 
         @Override
         public void onClick(View v) {
-            NavigationDrawerFragment.closeDrawer();
+
+            switch (getPosition()) {
+                case 0 : NavigationDrawerFragment.closeDrawer();
+                    break;
+
+                case 2 :
+                    Intent intent =  new Intent(Intent.ACTION_SEND);
+                    intent.setType("message/rfc822");
+                    intent.putExtra(Intent.EXTRA_EMAIL  , new String[]{"tanujgup@gmail.com"});
+                    intent.putExtra(Intent.EXTRA_SUBJECT, "MovieReviews Feedback");
+                    intent.putExtra(Intent.EXTRA_TEXT, "");
+
+                    try {
+
+                        mContext.startActivity(Intent.createChooser(intent, "Send mail..."));
+
+                    } catch (android.content.ActivityNotFoundException ex) {
+
+                        Toast.makeText(mContext, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+                    }
+                    break;
+
+                case 1 :
+
+            }
+
         }
     }
 }
