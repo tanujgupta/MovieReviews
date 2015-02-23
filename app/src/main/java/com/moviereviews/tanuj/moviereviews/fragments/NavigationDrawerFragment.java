@@ -28,26 +28,13 @@ public class NavigationDrawerFragment extends Fragment {
     public static final String KEY_USER_LEARNED_DRAWER = "user_learned_drawer";
 
     private ActionBarDrawerToggle mDrawerToggle;
-    private DrawerLayout mDrawerLayout;
+    private static DrawerLayout mDrawerLayout;
     private RecyclerView recyclerView;
     private RVCustomAdapter adpater;
 
     private boolean mUserLearnedDrawer;
     private boolean mFromSavedInstanceState;
     private View containerView;
-
-
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    public static NavigationDrawerFragment newInstance(String param1, String param2) {
-        NavigationDrawerFragment fragment = new NavigationDrawerFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     public NavigationDrawerFragment() {
         // Required empty public constructor
@@ -76,6 +63,12 @@ public class NavigationDrawerFragment extends Fragment {
 
         return layout;
     }
+
+    public static void closeDrawer() {
+
+        mDrawerLayout.closeDrawers();
+    }
+
 
     public static List<Information> getData() {
 

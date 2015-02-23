@@ -1,6 +1,7 @@
 package com.moviereviews.tanuj.moviereviews.Adapters;
 
 import android.content.Context;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.moviereviews.tanuj.moviereviews.fragments.NavigationDrawerFragment;
 import com.moviereviews.tanuj.moviereviews.model.Information;
 import com.moviereviews.tanuj.moviereviews.R;
 
@@ -49,7 +51,7 @@ public class RVCustomAdapter extends RecyclerView.Adapter <RVCustomAdapter.MyVie
         return data.size();
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder {
+    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView title;
         ImageView icon;
@@ -59,6 +61,12 @@ public class RVCustomAdapter extends RecyclerView.Adapter <RVCustomAdapter.MyVie
             super(itemView);
             title= (TextView) itemView.findViewById(R.id.listText);
             icon= (ImageView) itemView.findViewById(R.id.listIcon);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            NavigationDrawerFragment.closeDrawer();
         }
     }
 }

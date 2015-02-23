@@ -14,5 +14,5 @@
 
     <color name="light_grey">#f1f1f1</color>
     <color name="light_grey_line_color">#DEDEDE</color>
-
+    <color name="translucent_white">#ccffffff</color>
 </resources>
