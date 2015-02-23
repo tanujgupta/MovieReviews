@@ -1,7 +1,9 @@
 package com.moviereviews.tanuj.moviereviews.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,12 +36,12 @@ public class AdapterMovies extends RecyclerView.Adapter<AdapterMovies.ViewHolder
     private VolleySingleton volleySingleton;
     private ImageLoader imageLoader;
     private DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
-    private Context mContext;
+    private Activity mActivity;
 
-    public AdapterMovies(Context context)
+    public AdapterMovies(Activity activity)
     {
-        mContext = context;
-        layoutInflater = LayoutInflater.from(context);
+        mActivity = activity;
+        layoutInflater = LayoutInflater.from(activity);
         volleySingleton = VolleySingleton.getInstance();
         imageLoader = volleySingleton.getImageLoader();
     }
@@ -162,7 +164,18 @@ public class AdapterMovies extends RecyclerView.Adapter<AdapterMovies.ViewHolder
         @Override
         public void onClick(View v) {
 
-            mContext.startActivity(new Intent(mContext, DetailedMovieInfo.class));
+            Intent intent = new Intent(mActivity, DetailedMovieInfo.class);
+
+            Bundle mBundle = new Bundle();
+            mBundle.putString("movie_name", listMovies.get(getPosition()).getTitle());
+            mBundle.putString("synopsis", listMovies.get(getPosition()).getSynopsis());
+            mBundle.putString("url", listMovies.get(getPosition()).getUrlThumbnail());
+            mBundle.putString("date", listMovies.get(getPosition()).getReleaseDateTheater().toString());
+            mBundle.putInt("rating", listMovies.get(getPosition()).getAudienceScore());
+
+            intent.putExtras(mBundle);
+
+            mActivity.startActivity(intent);
         }
     }
 }
