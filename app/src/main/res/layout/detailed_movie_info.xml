@@ -63,8 +63,10 @@
         android:id="@+id/synopsis"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/Base.TextAppearance.AppCompat.Body2"
+        android:background="@drawable/synopsis_bg"
+        android:scrollbars="vertical"
         android:padding="@dimen/half_byte"
+        android:layout_margin="10dp"
         android:textSize="@dimen/sizeTextPrimary" />
 
 

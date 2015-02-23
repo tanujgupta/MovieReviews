@@ -11,4 +11,8 @@
 
     <color name="red">#F50505</color>
     <color name="white">#FFFFFF</color>
+
+    <color name="light_grey">#f1f1f1</color>
+    <color name="light_grey_line_color">#DEDEDE</color>
+
 </resources>

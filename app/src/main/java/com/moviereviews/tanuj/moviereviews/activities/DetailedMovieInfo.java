@@ -5,18 +5,25 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.method.ScrollingMovementMethod;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageLoader;
 import com.moviereviews.tanuj.moviereviews.R;
+import com.moviereviews.tanuj.moviereviews.extras.Constants;
+import com.moviereviews.tanuj.moviereviews.network.VolleySingleton;
 
 public class DetailedMovieInfo extends ActionBarActivity {
 
-    ImageView movieThumbnail;
-    TextView movieTitle, movieReleaseDate, synopsis;
-    RatingBar movieAudienceScore;
+    private ImageView movieThumbnail;
+    private TextView movieTitle, movieReleaseDate, synopsis;
+    private RatingBar movieAudienceScore;
+    private VolleySingleton volleySingleton;
+    private ImageLoader imageLoader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +57,51 @@ public class DetailedMovieInfo extends ActionBarActivity {
         movieReleaseDate = (TextView) findViewById(R.id.movieReleaseDate);
         movieAudienceScore = (RatingBar) findViewById(R.id.movieAudienceScore);
 
+        volleySingleton = VolleySingleton.getInstance();
+        imageLoader = volleySingleton.getImageLoader();
+
         movieTitle.setText(movieName);
         movieReleaseDate.setText(dateRelease);
         synopsis.setText(synopsis_text);
+
+        synopsis.setMovementMethod(new ScrollingMovementMethod());
+
+        if (rating == -1) {
+
+            movieAudienceScore.setRating(0.0F);
+            movieAudienceScore.setAlpha(0.5F);
+
+        } else {
+
+            movieAudienceScore.setRating(rating / 20.0F);
+            movieAudienceScore.setAlpha(1.0F);
+
+        }
+
+        loadImages(urlThumbNail);
+
     }
+
+    private void loadImages(String urlThumbnail) {
+
+        if (!urlThumbnail.equals(Constants.NA)) {
+
+            imageLoader.get(urlThumbnail, new ImageLoader.ImageListener() {
+
+                @Override
+                public void onResponse(ImageLoader.ImageContainer response, boolean isImmediate) {
+
+                    movieThumbnail.setImageBitmap(response.getBitmap());
+
+                }
+
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                }
+            });
+        }
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
