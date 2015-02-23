@@ -74,7 +74,7 @@ public class NavigationDrawerFragment extends Fragment {
 
 //load only static data inside a drawer
         List<Information> data = new ArrayList<Information>();
-        int[] icons = {R.drawable.ic_action_home, R.drawable.ic_action_alphabets, R.drawable.ic_action_calendar, R.drawable.ic_action_important};
+        int[] icons = {R.drawable.home, R.drawable.heart, R.drawable.feedback, R.drawable.person};
 
         String[] titles = {"Home", "Rate the App", "Send Feedback", "Profile coming soon"};
 

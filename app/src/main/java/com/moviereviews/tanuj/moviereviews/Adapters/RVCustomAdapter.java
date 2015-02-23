@@ -2,6 +2,7 @@ package com.moviereviews.tanuj.moviereviews.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -72,7 +73,22 @@ public class RVCustomAdapter extends RecyclerView.Adapter <RVCustomAdapter.MyVie
         public void onClick(View v) {
 
             switch (getPosition()) {
+
                 case 0 : NavigationDrawerFragment.closeDrawer();
+                    break;
+
+                case 1 :
+                    String appPackageName = mContext.getPackageName();
+
+                    try {
+
+                        mContext.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+
+                    } catch (android.content.ActivityNotFoundException anfe) {
+
+                        mContext.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + appPackageName)));
+
+                    }
                     break;
 
                 case 2 :
@@ -91,8 +107,6 @@ public class RVCustomAdapter extends RecyclerView.Adapter <RVCustomAdapter.MyVie
                         Toast.makeText(mContext, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
                     }
                     break;
-
-                case 1 :
 
             }
 
