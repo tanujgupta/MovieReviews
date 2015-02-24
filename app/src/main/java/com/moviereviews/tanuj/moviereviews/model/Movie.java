@@ -2,6 +2,10 @@ package com.moviereviews.tanuj.moviereviews.model;
 
 import java.util.Date;
 
+/*
+Model for storing various movie fields from the api. Respective setter and getter methods to set and retrieve fields.
+ */
+
 public class Movie {
 
     private long id;

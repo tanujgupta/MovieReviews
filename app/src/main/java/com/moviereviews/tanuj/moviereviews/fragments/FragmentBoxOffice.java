@@ -16,6 +16,10 @@ import com.moviereviews.tanuj.moviereviews.extras.SortListener;
 
 import static com.moviereviews.tanuj.moviereviews.network.Response.*;
 
+/*
+Fragment for box office movies. It uses the universal Response class for all fragments to fetch data
+ */
+
 public class FragmentBoxOffice extends Fragment implements SortListener{
 
     private AdapterMovies adapterBoxOffice;
@@ -50,6 +54,7 @@ public class FragmentBoxOffice extends Fragment implements SortListener{
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_movie_item_row, container, false);
 
+        // make xml references to the inflated layout
         listMovieHits = (RecyclerView) view.findViewById(R.id.listMovieHits);
         textVolleyError= (TextView) view.findViewById(R.id.textVolleyError);
         progressBar = (ProgressBar) view.findViewById(R.id.progress_dialog);

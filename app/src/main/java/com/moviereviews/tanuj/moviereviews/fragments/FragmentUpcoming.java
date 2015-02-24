@@ -56,6 +56,7 @@ public class FragmentUpcoming extends Fragment implements SortListener{
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_movie_item_row, container, false);
 
+        // make xml references to the inflated layout
         listUpcoming = (RecyclerView) view.findViewById(R.id.listMovieHits);
         textVolleyError= (TextView) view.findViewById(R.id.textVolleyError);
         progressBar = (ProgressBar) view.findViewById(R.id.progress_dialog);

@@ -4,7 +4,10 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
+// public  class for logging and displaying toasts
+
 public class L {
+
     public static void m(String message) {
         Log.d("TANUJ", "" + message);
     }

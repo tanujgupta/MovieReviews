@@ -17,6 +17,10 @@ import com.moviereviews.tanuj.moviereviews.extras.SortListener;
 import static com.moviereviews.tanuj.moviereviews.network.Response.IN_THEARE;
 import static com.moviereviews.tanuj.moviereviews.network.Response.fetchJsonRequest;
 
+/*
+Fragment for movies currently in theatres. It uses the universal Response class for all fragments to fetch data
+ */
+
 public class FragmentInTheatres extends Fragment implements SortListener{
 
     private AdapterMovies adapterInTheatres;
@@ -50,6 +54,7 @@ public class FragmentInTheatres extends Fragment implements SortListener{
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_movie_item_row, container, false);
 
+        // make xml references to the inflated layout
         listMovieTheatres = (RecyclerView) view.findViewById(R.id.listMovieHits);
         textVolleyError= (TextView) view.findViewById(R.id.textVolleyError);
         progressBar = (ProgressBar) view.findViewById(R.id.progress_dialog);

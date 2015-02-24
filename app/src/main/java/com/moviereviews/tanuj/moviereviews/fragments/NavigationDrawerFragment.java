@@ -21,6 +21,9 @@ import com.moviereviews.tanuj.moviereviews.R;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+Fragment for the navigation drawer fragment.
+ */
 
 public class NavigationDrawerFragment extends Fragment {
 
@@ -41,7 +44,8 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
 
         mUserLearnedDrawer = Boolean.valueOf(readFromPreferences(getActivity(), KEY_USER_LEARNED_DRAWER, "false"));
@@ -52,8 +56,8 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
         // Inflate the layout for this fragment
         View layout = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
         recyclerView = (RecyclerView) layout.findViewById(R.id.drawerList);
@@ -70,9 +74,9 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
 
-    public static List<Information> getData() {
-
-//load only static data inside a drawer
+    public static List<Information> getData()
+    {
+        //load only static data inside a drawer
         List<Information> data = new ArrayList<Information>();
         int[] icons = {R.drawable.home, R.drawable.heart, R.drawable.feedback, R.drawable.person};
 
@@ -138,6 +142,7 @@ public class NavigationDrawerFragment extends Fragment {
 
     }
 
+    // static method to store data using shared preferences
     public static void saveToPreferences(Context context, String preferenceName, String preferenceValue) {
 
         SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
@@ -147,6 +152,7 @@ public class NavigationDrawerFragment extends Fragment {
 
     }
 
+    // static method to read data using shared preferences
     public static String readFromPreferences(Context context, String preferenceName, String defaultValue) {
 
         SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
