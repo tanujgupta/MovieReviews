@@ -44,6 +44,9 @@ public class MyActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
         setContentView(R.layout.activity_main);
 
         toolbar = (Toolbar) findViewById(R.id.app_bar);
@@ -174,4 +177,11 @@ public class MyActivity extends ActionBarActivity {
         }
     }
 
+    @Override
+    protected void onResume() {
+
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+
+        super.onResume();
+    }
 }

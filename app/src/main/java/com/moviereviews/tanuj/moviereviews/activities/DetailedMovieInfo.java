@@ -30,6 +30,8 @@ public class DetailedMovieInfo extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+
         setContentView(R.layout.detailed_movie_info);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
