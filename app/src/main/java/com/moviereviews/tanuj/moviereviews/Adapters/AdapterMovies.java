@@ -166,11 +166,23 @@ public class AdapterMovies extends RecyclerView.Adapter<AdapterMovies.ViewHolder
 
             Intent intent = new Intent(mActivity, DetailedMovieInfo.class);
 
+            Date movieReleaseDate = listMovies.get(getPosition()).getReleaseDateTheater();
+            String formattedDate;
+
+            if (movieReleaseDate != null)
+            {
+                formattedDate = dateFormatter.format(movieReleaseDate);
+
+            } else {
+
+                formattedDate = Constants.NA;
+            }
+
             Bundle mBundle = new Bundle();
             mBundle.putString("movie_name", listMovies.get(getPosition()).getTitle());
             mBundle.putString("synopsis", listMovies.get(getPosition()).getSynopsis());
             mBundle.putString("url", listMovies.get(getPosition()).getUrlThumbnail());
-            mBundle.putString("date", listMovies.get(getPosition()).getReleaseDateTheater().toString());
+            mBundle.putString("date", formattedDate);
             mBundle.putInt("rating", listMovies.get(getPosition()).getAudienceScore());
 
             intent.putExtras(mBundle);
