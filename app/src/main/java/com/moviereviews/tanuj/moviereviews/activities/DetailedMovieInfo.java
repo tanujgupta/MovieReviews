@@ -1,6 +1,7 @@
 package com.moviereviews.tanuj.moviereviews.activities;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
@@ -108,7 +109,9 @@ public class DetailedMovieInfo extends ActionBarActivity {
 
         if (item.getItemId() == R.id.home)
         {
-            NavUtils.navigateUpFromSameTask(this);
+            Intent intent = NavUtils.getParentActivityIntent(this);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP| Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            NavUtils.navigateUpTo(this, intent);
         }
         return super.onOptionsItemSelected(item);
     }
