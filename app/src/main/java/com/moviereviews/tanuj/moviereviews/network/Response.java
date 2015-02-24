@@ -30,6 +30,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import static com.moviereviews.tanuj.moviereviews.extras.Constants.DATE;
 import static com.moviereviews.tanuj.moviereviews.extras.Constants.NA;
 import static com.moviereviews.tanuj.moviereviews.extras.Keys.EndpointBoxOffice.KEY_AUDIENCE_SCORE;
 import static com.moviereviews.tanuj.moviereviews.extras.Keys.EndpointBoxOffice.KEY_ID;
@@ -152,7 +153,7 @@ public class Response {
                 {
                     long id = -1;
                     String title = NA;
-                    String releaseDate = NA;
+                    String releaseDate = DATE;
                     int audienceScore = -1;
                     String synopsis = NA;
                     String urlThumbnail = NA;
