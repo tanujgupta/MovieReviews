@@ -25,8 +25,7 @@
         android:layout_alignTop="@+id/movieThumbnail"
         android:layout_marginLeft="56dp"
         android:gravity="right"
-        android:padding="@dimen/half_byte"
-        android:text="Hitman Agent 47"
+        android:textColor="@color/colorSecondaryText"
         android:textSize="@dimen/sizeTextPrimary" />
 
     <TextView
@@ -37,7 +36,7 @@
         android:layout_alignParentRight="true"
         android:layout_below="@id/movieTitle"
         android:padding="@dimen/half_byte"
-        android:text="31-31-31"
+        android:textColor="@color/colorSecondaryText"
         android:textSize="@dimen/sizeTextSecondary" />
 
     <RatingBar
