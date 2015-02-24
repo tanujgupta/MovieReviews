@@ -45,17 +45,18 @@ public class MyActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+       setContentView(R.layout.activity_main);
 
-
-        setContentView(R.layout.activity_main);
-
+        //Add the toolbar and enable the home button on the tool bar
         toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
 
+        // instantiate the navigation drawer fragment
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), toolbar);
 
+        // make xml references for the layout and apply view pager adapters
         mPager = (ViewPager) findViewById(R.id.pager);
         mTabs = (SlidingTabLayout) findViewById(R.id.tabs);
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
@@ -67,6 +68,7 @@ public class MyActivity extends ActionBarActivity {
 
     }
 
+    // method for creating the floating action menu and sub menu buttons
     private void buildFAB() {
 
         //define the icon for the main floating action button
@@ -112,8 +114,8 @@ public class MyActivity extends ActionBarActivity {
                 .build();
     }
 
+    // listener when a sub menu button is clicked to sort the movie list. Added tags to differentiate between different sub menu buttons
     private View.OnClickListener clickListner =  new View.OnClickListener() {
-
 
         @Override
         public void onClick(View v) {
@@ -131,11 +133,11 @@ public class MyActivity extends ActionBarActivity {
                 if (v.getTag().equals(TAG_SORT_RATINGS)) {
                     ((SortListener) fragment).sort(SORT_BY_STAR);
                 }
-
             }
 
         }
     };
+
 
     private class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
@@ -143,6 +145,7 @@ public class MyActivity extends ActionBarActivity {
             super(fm);
         }
 
+        // get the current selected fragment
         public Fragment getItem(int num) {
 
             Fragment fragment = null;
@@ -180,6 +183,7 @@ public class MyActivity extends ActionBarActivity {
     @Override
     protected void onResume() {
 
+        //transition between activities is fade in/out
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 
         super.onResume();

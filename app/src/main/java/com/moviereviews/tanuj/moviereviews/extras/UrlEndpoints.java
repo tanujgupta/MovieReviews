@@ -1,5 +1,8 @@
 package com.moviereviews.tanuj.moviereviews.extras;
 
+/*
+public class storing different links to be used to download data from the api
+ */
 
 public class UrlEndpoints {
 

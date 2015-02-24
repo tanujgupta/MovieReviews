@@ -1,6 +1,8 @@
 package com.moviereviews.tanuj.moviereviews.extras;
 
-
+/*
+Interface storing json keys for rotten tomatoes api
+ */
 public interface Keys {
 
     public interface EndpointBoxOffice{
@@ -15,11 +17,6 @@ public interface Keys {
         public static final String KEY_SYNOPSIS="synopsis";
         public static final String KEY_POSTERS="posters";
         public static final String KEY_THUMBNAIL="thumbnail";
-        public static final String KEY_LINKS="links";
-        public static final String KEY_SELF="self";
-        public static final String KEY_CAST="cast";
-        public static final String KEY_REVIEWS="reviews";
-        public static final String KEY_SIMILAR="similar";
 
     }
 }

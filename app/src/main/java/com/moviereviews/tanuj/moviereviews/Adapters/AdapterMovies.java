@@ -1,7 +1,6 @@
 package com.moviereviews.tanuj.moviereviews.Adapters;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -28,6 +27,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+/*
+Adapter for all the three movie fragments with recycler view implementing the clicklistener. Sub activity is launched every
+time an item on the recycler view is clicked
+*/
+
 public class AdapterMovies extends RecyclerView.Adapter<AdapterMovies.ViewHolderBoxOffice>
 {
 
@@ -49,10 +53,11 @@ public class AdapterMovies extends RecyclerView.Adapter<AdapterMovies.ViewHolder
     public void setMovieList(ArrayList<Movie> listMovies)
     {
         this.listMovies = listMovies;
-        notifyItemRangeChanged(0, listMovies.size());
+        notifyItemRangeChanged(0, listMovies.size()); // notify everytime the list items changes
     }
 
 
+    // method called by main activity to sort the list in the selected fragment
     public void sortMoview(int sortBy) {
 
         switch (sortBy){
@@ -75,6 +80,7 @@ public class AdapterMovies extends RecyclerView.Adapter<AdapterMovies.ViewHolder
     @Override
     public ViewHolderBoxOffice onCreateViewHolder(ViewGroup parent, int viewType)
     {
+        // inflate the custom row which is passed to bindviewholder to bind data to the inflated layout
         View view = layoutInflater.inflate(R.layout.custom_movie_box_office, parent, false);
         ViewHolderBoxOffice viewHolder = new ViewHolderBoxOffice(view);
         return viewHolder;
@@ -83,10 +89,12 @@ public class AdapterMovies extends RecyclerView.Adapter<AdapterMovies.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolderBoxOffice holder, int position)
     {
+        // set the values of inflated layout with the corresponding movie items
         Movie currentMovie = listMovies.get(position);
         holder.movieTitle.setText(currentMovie.getTitle());
         Date movieReleaseDate = currentMovie.getReleaseDateTheater();
 
+        // set the date
         if (movieReleaseDate != null)
         {
             String formattedDate = dateFormatter.format(movieReleaseDate);
@@ -99,6 +107,7 @@ public class AdapterMovies extends RecyclerView.Adapter<AdapterMovies.ViewHolder
 
         int audienceScore = currentMovie.getAudienceScore();
 
+        // set the rating on rating bar
         if (audienceScore == -1) {
 
             holder.movieAudienceScore.setRating(0.0F);
@@ -111,11 +120,13 @@ public class AdapterMovies extends RecyclerView.Adapter<AdapterMovies.ViewHolder
 
         }
 
+        // load thumbnail image
         String urlThumnail = currentMovie.getUrlThumbnail();
         loadImages(urlThumnail, holder);
 
     }
 
+    // load the image. If an error exists while loading just use the default existing image on the layout
     private void loadImages(String urlThumbnail, final ViewHolderBoxOffice holder) {
 
         if (!urlThumbnail.equals(Constants.NA)) {
@@ -164,6 +175,7 @@ public class AdapterMovies extends RecyclerView.Adapter<AdapterMovies.ViewHolder
         @Override
         public void onClick(View v) {
 
+            // on item click start the sub-activity while passing data for the selected list item in the bundle
             Intent intent = new Intent(mActivity, DetailedMovieInfo.class);
 
             Date movieReleaseDate = listMovies.get(getPosition()).getReleaseDateTheater();
