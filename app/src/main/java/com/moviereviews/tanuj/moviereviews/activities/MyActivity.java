@@ -56,7 +56,7 @@ public class MyActivity extends ActionBarActivity {
         NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), toolbar);
 
-        // make xml references for the layout and apply view pager adapters
+        // make xml references to the layout and apply view pager adapters
         mPager = (ViewPager) findViewById(R.id.pager);
         mTabs = (SlidingTabLayout) findViewById(R.id.tabs);
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
