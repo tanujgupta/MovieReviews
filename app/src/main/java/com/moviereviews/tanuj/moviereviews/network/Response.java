@@ -51,6 +51,9 @@ import static com.moviereviews.tanuj.moviereviews.extras.UrlEndpoints.URL_PARAM_
 import static com.android.volley.Response.*;
 import static com.moviereviews.tanuj.moviereviews.extras.UrlEndpoints.URL_UPCOMING;
 
+/*
+common class for different movie fragments containing static methods to fetch and parse json response
+ */
 public class Response {
 
     public static final int BOX_OFFICE = 1;
@@ -69,6 +72,7 @@ public class Response {
         requestQueue = volleySingleton.getRequestQueue();
     }
 
+    //fetch json response
     public static void fetchJsonRequest(final AdapterMovies adapterBoxOffice, final TextView eTextView, final ProgressBar progressBar, int url_type)
     {
 
@@ -76,6 +80,7 @@ public class Response {
 
         String url = "";
 
+        // depending upon the fragment calling this function construct the url
         switch (url_type)
         {
             case IN_THEARE  : url = getInTheatresURL();
@@ -89,11 +94,13 @@ public class Response {
 
         }
 
+        // request response using volley singleton library
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response)
             {
+                // on proper response remove the circular progress bar and parse the fetched response
                 progressBar.setVisibility(View.GONE);
                 eTextView.setVisibility(View.GONE);
                 listMovies = parseJSONResponse(response);
@@ -104,6 +111,7 @@ public class Response {
             @Override
             public void onErrorResponse(VolleyError error) {
 
+                // in case of an error show corresponding error textview inside the fragment
                 progressBar.setVisibility(View.GONE);
                 handleVolleyError(eTextView, error);
             }
@@ -113,6 +121,7 @@ public class Response {
 
     }
 
+    // method handling display of error message in case of an error while fetching or parsing data
     private static void handleVolleyError(TextView eTextView, VolleyError error)
     {
         eTextView.setVisibility(View.VISIBLE);
@@ -138,6 +147,7 @@ public class Response {
         }
     }
 
+    // parse the fetched json response into a list of movie objects
     private static ArrayList<Movie> parseJSONResponse(JSONObject response)
     {
 
@@ -145,12 +155,12 @@ public class Response {
 
         if (response != null && response.length() > 0) {
 
-
             try {
 
                 JSONArray arrayMovies = response.getJSONArray(KEY_MOVIES);
                 for (int i = 0; i < arrayMovies.length(); i++)
                 {
+                    // set default values in case of fields missing from response
                     long id = -1;
                     String title = NA;
                     String releaseDate = DATE;

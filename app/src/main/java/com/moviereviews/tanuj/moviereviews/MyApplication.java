@@ -5,7 +5,6 @@ import android.content.Context;
 
 public class MyApplication extends Application {
 
-    //TODO change this key
     public static final String API_KEY_ROTTEN_TOMATOES="k8ep8wy2wp7rjmywy4rfwwre";
 
     private static MyApplication sInstance;
@@ -14,6 +13,7 @@ public class MyApplication extends Application {
 
         return sInstance;
     }
+
     public static Context getAppContext(){
 
         return sInstance.getApplicationContext();
